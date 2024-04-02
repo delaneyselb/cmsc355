@@ -1,0 +1,68 @@
+//A simple demonstration of sorting records alphabetically by pet name and performing a search.
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        DatabaseSystem dbSystem = new DatabaseSystem();
+
+        // Adding sample records
+        dbSystem.addRecord(new AnimalRecord("Buddy", "Dog", "555-1234", 101, "01012010", "None", "Ibuprofen", "None"));
+        dbSystem.addRecord(new AnimalRecord("Mittens", "Cat", "555-5678", 102, "03032015", "Grass", "None", "Asthma"));
+        dbSystem.addRecord(new AnimalRecord("Walter", "Dog", "777-5858", 103, "02182016", "None", "None", "Blind"));
+        dbSystem.addRecord(
+
+                new AnimalRecord("Sandy", "Hamster", "987-2348", 104, "01032011", "None", "None", "Pregnant"));
+        dbSystem.addRecord(new AnimalRecord("Pesto", "Cat", "512-9868", 105, "08112020", "None", "None",
+
+                "Reaction to vaccination"));
+
+        boolean key = true;
+
+        try {
+
+            while (key) {
+                // Display home screen of input options
+                System.out.println("Welcome to the clinic!");
+                System.out.println("\t(1) Sort records alphabetically by pet name");
+                System.out.println("\t(2) Search records by pet name");
+                System.out.println("\t(3) Quit program");
+                System.out.print("Please choose an option: ");
+
+                int input = scan.nextInt(); // Move input reading inside the loop
+
+                if (input == 1) {
+                    // Sort records by pet name alphabetically
+                    System.out.println("Records Sorted by Pet Name:");
+                    dbSystem.sortRecordsByName();
+                    dbSystem.printAllRecords();
+                } else if (input == 2) {
+                    scan.nextLine(); // Consume the newline
+                    System.out.println("Enter pet name to search by: ");
+                    String name = scan.nextLine();
+                    // Search records by name
+                    System.out.println("Searching for: " + "'" + name + "'");
+                    List<AnimalRecord> searchResults = dbSystem.searchByName(name);
+                    if (searchResults.isEmpty()) {
+                        System.out.println("Record not found.\n");
+                    } else {
+                        for (AnimalRecord record : searchResults) {
+                            System.out.println(record.toString());
+                        }
+                    }
+                } else if (input == 3) {
+                    System.out.println("Exiting program...");
+                    key = false;
+                }
+            }
+            scan.close();
+
+        } catch (InputMismatchException e) {
+
+            System.out.println("Invalid input, try again.");
+        }
+    }
+}
