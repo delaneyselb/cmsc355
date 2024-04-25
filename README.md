@@ -7,3 +7,6 @@ We focused on implementing the sort by pet name (alphabetically) and search by p
 
 Sprint 2: 
 We implemented a quit/exit program use case. We also implemented a filter by animal type use case. This use case prompts the user to enter an animal type to filter by, then displays all animal records corresponding to that animal type. The user is then prompted to enter 1 to search within those records by animal/pet name, to which the specified animal record is displayed. The user can also enter 2 instead to quit/exit the program. We faced some difficulties in getting user input, but that was quickly resolved. We also faced difficulty searching by animal name within the returned animal type filtered list, but this was resolved by creating a second DatabaseSystem object and adding the filtered records to it.
+
+Sprint 3: 
+We implemented an "add record" use case. This allows new pet patients to be allowed to the record database. We faced some difficulties in capturing the input for each data field, but quickly worked through this. We also ran into some unrelated problems with run configuration in our IDE, but were able to sort these outs as well through some research. 
